@@ -1,0 +1,39 @@
+/* 表格 */
+
+.html-table {
+    display: table;
+    width: 100%;
+    max-width: 100%;
+}
+.html-table-tr {
+    display: table-row;
+    /*border-top: 1px solid #e0e0e0;*/
+}
+.html-table-thead {
+    display: table-header-group;
+}
+
+.html-table-tbody {
+    display: table-row-group;
+}
+
+.html-table-th {
+    text-align: center;
+    font-weight: bold;
+    background: #f0f0f0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.html-table-th, .html-table-td {
+    display: table-cell;
+    padding: 5px;
+    font-size: 28rpx;
+    border-left: 1px solid #e0e0e0;
+    word-break: break-all;
+    white-space: nowrap;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.html-table-td:last-child, .html-table-th:last-child {
+    border-right: 1px solid #e0e0e0;
+}

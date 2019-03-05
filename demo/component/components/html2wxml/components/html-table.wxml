@@ -1,0 +1,74 @@
+<!--components/html2wxml/components/html-table.wxml-->
+<wxs module="utils">
+function isTableElement(tagName) {
+  return ['table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td'].indexOf(tagName) !== -1
+}
+
+module.exports = {
+  isTableElement: isTableElement
+}
+</wxs>
+<template name="html-table-td">
+  <view class="{{item.attr.class||''}} html-table-td" style="{{item.attr.style||''}}">
+    <block wx:for="{{item.nodes}}" wx:key="">
+      <template wx:if="{{utils.isTableElement(item.tag)}}"
+        is="html-table-{{item.tag}}"
+        data="{{item:item}}"
+      ></template>
+      <node-template item="{{item}}" wx:else></node-template>
+    </block>
+  </view>
+</template>
+
+<template name="html-table-tr">
+  <view class="{{item.attr.class||''}} html-table-tr" style="{{item.attr.style||''}}">
+    <template wx:for="{{item.nodes}}" wx:key=""
+      is="html-table-{{item.tag}}"
+      data="{{item:item}}"
+    ></template>
+  </view>
+</template>
+
+<template name="html-table-th">
+  <view class="{{item.attr.class||''}} html-table-th" style="{{item.attr.style||''}}">
+    <block wx:for="{{item.nodes}}" wx:key="">
+      <template wx:if="{{utils.isTableElement(item.tag)}}"
+        is="html-table-{{item.tag}}"
+        data="{{item:item}}"
+      ></template>
+      <node-template item="{{item}}" wx:else></node-template>
+    </block>
+  </view>
+</template>
+
+<template name="html-table-foot">
+  <view class="{{item.attr.class||''}} html-table-tfoot" style="{{item.attr.style||''}}">
+    <template wx:for="{{item.nodes}}" wx:key=""
+      is="html-table-{{item.tag}}"
+      data="{{item:item}}"
+    ></template>
+  </view>
+</template>
+
+<template name="html-table-thead">
+  <view class="{{item.attr.class||''}} html-table-thead" style="{{item.attr.style || ''}}">
+    <template wx:for="{{item.nodes}}" wx:key=""
+      is="html-table-{{item.tag}}"
+      data="{{item:item}}"
+    ></template>
+  </view>
+</template>
+
+<template name="html-table-tbody">
+  <view class="{{item.attr.class||''}} html-table-tbody" style="{{item.attr.style}}">
+    <template wx:for="{{item.nodes}}" wx:key=""
+      is="html-table-{{item.tag}}"
+      data="{{item:item}}"
+    ></template>
+  </view>
+</template>
+<view class="html-table">
+  <block wx:for="{{item.nodes}}" wx:key="" wx:if="{{utils.isTableElement(item.tag)}}">
+    <template is="html-table-{{item.tag}}" data="{{item: item}}"></template>
+  </block>
+</view>

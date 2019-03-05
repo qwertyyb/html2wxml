@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "node-template": "./node-template",
+    "html-table": "./html-table",
+    "html-list": "./html-list"
+  }
+}

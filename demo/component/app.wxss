@@ -1,0 +1,84 @@
+/**
+ * Project: html2wxml
+ * Description: 将HTML、Markdown转为微信小程序WXML 
+ * Author: 幻想小籽
+ * Organization: QwqOffice (https://www.qwqoffice.com)
+ */
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    12% {
+        transform: rotate(45deg);
+    }
+
+    25% {
+        transform: rotate(90deg);
+    }
+
+    37% {
+        transform: rotate(135deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    62% {
+        transform: rotate(225deg);
+    }
+
+    75% {
+        transform: rotate(270deg);
+    }
+
+    87% {
+        transform: rotate(315deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    width: 80rpx;
+    height: 80rpx;
+    transform-origin: 52.5% 50.5%;
+    animation: loading 0.8s steps(1, start) infinite;
+}
+
+.html2wxml {
+    padding: 0 5px;
+    font-family: inherit;
+    font-size: 32rpx;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* .html2wxml view {
+    word-break: break-all;
+    overflow: auto;
+    max-width: 100%;
+} */
+
+
+/* .wxml-ol > .wxml-li {
+    display: table-row;
+    margin: 0;
+} */
+
+/* .wxml-ol > .wxml-li > .wxml-li-text, .wxml-ol > .wxml-li > .wxml-li-type {
+    display: table-cell;
+}
+
+.wxml-ol > .wxml-li > .wxml-li-type > view {
+    text-align: right;
+} */
+
+@import "components/html2wxml/highlight-styles/darcula.wxss";
+@import "components/html2wxml/highlight-styles/default.wxss";
+@import "components/html2wxml/highlight-styles/dracula.wxss";
+@import "components/html2wxml/highlight-styles/tomorrow.wxss";

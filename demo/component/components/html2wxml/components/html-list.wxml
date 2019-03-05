@@ -1,0 +1,27 @@
+<template name="html-list-li">
+  <view class="{{item.attr.class}} html-li" style="{{item.attr.style}}">
+    <view class="html-li-type">
+        <view class="{{item.attr.class}} html-li-{{type}}">{{type === 'number' ? item.idx + 1 + '. ' : ''}}</view>
+    </view>
+    <block wx:for="{{item.nodes}}" wx:key="">
+      <node-template item="{{item}}"></node-template>
+    </block>
+  </view>
+</template>
+
+<!-- ul类型 -->
+    <block wx:if="{{item.tag == 'ul'}}">
+        <view class="{{item.attr.class}} html-ul html-block" style="{{item.attr.style}}">
+            <block wx:for="{{item.nodes}}" wx:key="">
+                <template is="html-list-li" data="{{item:item, type:item.listtype != undefined ? item.listtype : 'circle'}}" />
+            </block>
+        </view>
+    </block>
+    <!-- ol类型 -->
+    <block wx:elif="{{item.tag == 'ol'}}">
+        <view class="{{item.attr.class}} html-ol html-block" style="{{item.attr.style}}">
+            <block wx:for="{{item.nodes}}" wx:key="">
+                <template is="html-list-li" data="{{item:item, type:item.listtype != undefined ? item.listtype : 'number'}}" />
+            </block>
+        </view>
+    </block>

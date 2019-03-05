@@ -32,7 +32,9 @@ Component({
                             'content-type': 'application/x-www-form-urlencoded'
                         },
                         success: res => {
-                            html2wxml.html2wxml(res.data, this, this.data.padding);
+                          this.setData({
+                            nodes: res.data
+                          })
                         }
                     })
                 }
@@ -42,7 +44,9 @@ Component({
             type: Object,
             value: {},
             observer: function(newVal, oldVal) {
-                html2wxml.html2wxml(this.data.json, this, this.data.padding);
+              this.setData({
+                nodes: this.data.json
+              })
             }
         },
         type: {
@@ -74,12 +78,10 @@ Component({
             value: true
         }
     },
+    data: {
+      nodes: null
+    },
     methods: {
-        wxmlTagATap: function(e) {
-            this.triggerEvent('WxmlTagATap', {
-                src: e.currentTarget.dataset.src
-            });
-        }
     },
     attached: function() {}
 })

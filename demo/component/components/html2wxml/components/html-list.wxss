@@ -1,0 +1,62 @@
+
+/* 列表 */
+
+.html-ul, .html-ol {
+    margin: 7rpx 10rpx;
+}
+
+.html-li {
+    margin: 10rpx 0;
+    position: relative;
+}
+
+.html-li-text {
+    align-items: center;
+    line-height: 20px;
+}
+
+.html-li-type {
+    display: inline-block;
+    margin-right: 5px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.html-li-circle {
+    display: inline-flex;
+    width: 4px;
+    height: 4px;
+    background-color: #555;
+    border-radius: 50%;
+}
+
+.html-li-square {
+    display: inline-flex;
+    width: 10rpx;
+    height: 10rpx;
+    background-color: #333;
+    margin-right: 5px;
+}
+
+.html-li-ring {
+    display: inline-flex;
+    width: 10rpx;
+    height: 10rpx;
+    border: 2rpx solid #333;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-right: 5px;
+}
+
+.html-ol > .html-li {
+    display: table-row;
+    margin: 0;
+}
+
+.html-ol > .html-li > .html-li-text, .html-ol > .html-li > .html-li-type {
+    display: table-cell;
+}
+
+.html-ol > .html-li > .html-li-type > view {
+    text-align: right;
+}

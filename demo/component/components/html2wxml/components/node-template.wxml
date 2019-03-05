@@ -1,0 +1,106 @@
+<wxs module="utils">
+  var maxLiIndex = null
+  function getMaxLiIndex(item) {
+    var nodes = item.nodes
+    for(var i = nodes.length - 1; i >= 0; i--) {
+      if (item.idx) return item.idx.toString().length
+    }
+    return 1
+  }
+  module.exports = {
+    getMaxLiIndex: getMaxLiIndex
+  }
+</wxs>
+
+<template name="wxmlVideo">
+  <view class="{{item.attr.class}} wxml-video" style="{{item.attr.style}}">
+      <video class="{{item.attr.class}}" src="{{item.attr.src}}" controls="{{item.attr.controls != undefined ? true : false}}" loop="{{item.attr.loop != undefined ? true : false}}" poster="{{item.attr.poster}}"></video>
+  </view>
+</template>
+
+<template name="wxmlAudio">
+  <view class="{{item.attr.class}} wxml-audio" style="{{item.attr.style}}">
+      <audio class="{{item.attr.class}}" src="{{item.attr.src}}" controls="{{item.attr.controls != undefined ? true : false}}" loop="{{item.attr.loop != undefined ? true : false}}" poster="{{item.attr.poster}}" name="{{item.attr.name}}" author="{{item.attr.author}}"></audio>
+  </view>
+</template>
+
+<template name="wxmlImg">
+  <image class="{{item.attr.class}} wxml-img"
+    data-src="{{item.attr.src}}"
+    src="{{item.attr.src}}"
+    data-idx="{{item.idx}}"
+    bindload="wxmlImgLoad"
+    bindtap="wxmlImgTap"
+    mode="widthFix"
+    style="width:{{images[item.idx].width}}px;{{item.attr.style}}"
+  />
+</template>
+
+<template name="wxmlLiType">
+  <view class="wxml-li-type">
+      <view class="{{item.attr.class}} {{'wxml-li-' + type}}">{{type === 'number' ? idx + 1 + '. ' : ''}}</view>
+  </view>
+</template>
+
+<!-- button 类型 -->
+<block wx:if="{{item.tag == 'button'}}">
+    <button type="default" size="mini">
+        <block wx:for="{{item.nodes}}" wx:key="">
+            <node-template item="{{item}}" images="{{images}}"></node-template>
+        </block>
+    </button>
+</block>
+<!-- ul类型 -->
+<block wx:elif="{{item.tag == 'ul' || item.tag === 'ol'}}">
+  <html-list item="{{item}}"></html-list>
+</block>
+<!-- li类型 -->
+<block wx:elif="{{item.tag == 'li'}}">
+    <view class="{{item.attr.class}} wxml-li" style="{{item.attr.style}}">
+        <template is="wxmlLiType" data="{{item:item, idx:item.idx, type:listStyle, width: utils.getMaxLiIndex(item)}}" />
+        <view class="{{item.attr.class}} wxml-li-text">
+            <block wx:for="{{item.nodes}}" wx:key="">
+                <node-template item="{{item}}" images="{{images}}"></node-template>
+            </block>
+        </view>
+    </view>
+</block>
+<!-- a类型 -->
+<block wx:elif="{{item.tag == 'a'}}">
+    <view bindtap="wxmlTagATap" class="wxml-inline {{item.attr.class}} wxml-a" data-src="{{item.attr.href}}" style="{{item.attr.style}}">
+        <block wx:for="{{item.nodes}}" wx:key="">
+            <node-template item="{{item}}" images="{{images}}"></node-template>
+        </block>
+    </view>
+</block>
+<!-- video类型 -->
+<block wx:elif="{{item.tag == 'video'}}">
+    <template is="wxmlVideo" data="{{item:item}}" />
+</block>
+<!-- audio类型 -->
+<block wx:elif="{{item.tag == 'audio'}}">
+    <template is="wxmlAudio" data="{{item:item}}" />
+</block>
+<!-- img类型 -->
+<block wx:elif="{{item.tag == 'img'}}">
+    <template is="wxmlImg" data="{{images:images, item:item}}" />
+</block>
+<!-- 纯文本类型 -->
+<block wx:elif="{{item.tag == '#text'}}">
+    <text>{{item.text}}</text>
+</block>
+<block wx:elif="{{item.tag == 'br'}}">
+    <text>\n</text>
+</block>
+<!-- table类型 -->
+<block wx:elif="{{item.tag == 'table'}}">
+    <html-table item="{{item}}"></html-table>
+</block>
+<!-- 其他类型 -->
+<block wx:else>
+    <view class="{{item.attr.class}} wxml-{{item.tag}} wxml-{{item.type}}" style="{{item.attr.style}}">
+        <block wx:for="{{item.nodes}}" wx:key="">
+            <node-template item="{{item}}" images="{{images}}"></node-template>
+        </block>
+    </view>
+</block>
