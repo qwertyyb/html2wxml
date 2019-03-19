@@ -369,3 +369,7 @@ QwqOffice官网小程序（文章详情页富文本解析由 `html2wxml` 提供�
 
 ## 赞赏
 ![赞赏码](https://www.qwqoffice.com/html2wxml/images/admiring-qrcode.png "赞赏码")
+
+## 本项目基于htmltowxml分支
+解决了htmltowxml的最大层级限制
+现存的问题，因为涉及到样式的层级关系，所以代码高亮的主题存在问题
